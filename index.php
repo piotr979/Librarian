@@ -13,7 +13,6 @@ $results = Book::getAllBooks($conn);
 ?>
 
 <section class="books-display">
-
     <?php foreach ($results as $book) : ?>
 
         <article class="book-item">

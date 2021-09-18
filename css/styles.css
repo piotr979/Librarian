@@ -64,7 +64,7 @@ input[type="radio"] {
     padding-left: 1rem;
 }
 main {
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
 }
 button.submit {
@@ -90,7 +90,7 @@ button.upload {
 }
 
 header {
-  
+    position: relative;
     background-color: var(--primary-color);
 
 }
@@ -156,10 +156,10 @@ ul.authorisation__nav li, ul.authorisation__nav__admin li {
 }
 .books-display {
     display: flex;
+    position: relative;
     flex-direction: column;
     margin-top: 1rem;
     flex-wrap: wrap;
-
 }
 .book-cover {
     width: 10rem;
@@ -213,7 +213,6 @@ ul.authorisation__nav li, ul.authorisation__nav__admin li {
     display: block;
     text-align: center;
     font-size: .875rem;
-    padding-bottom: 1rem;
 }
 .login__label {
     text-align: center;
@@ -401,13 +400,23 @@ span.required {
     padding-left: 1rem;
     padding-top: .3rem;
 }
-.shopping-basket {
+.shopping-basket, .user-icon {
     width: 1.5rem;
-
     top: 5px;
     height: auto;
 }
-/* breakpoints based on boostrap */
+.reg-teaser {
+    margin-top: 1rem;
+    text-align: center;
+}
+.reg-teaser p {
+    display: inline;
+}
+.reg-teaser a {
+    color: var(--secondary-color);
+}
+
+/* breakpoints based on boostra.p */
 /* 576px, 768px, 992px, and 1200 */
 
 @media screen and (min-width: 576px) {

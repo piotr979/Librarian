@@ -28,21 +28,26 @@
             </div>
             <nav class="authorisation">
                 <ul class="authorisation__nav">
-                <li><a href="admin/basket.php">
+                <li><a href="basket.php">
                     <img class="shopping-basket" src="images/shopping-basket-svgrepo-com.svg" 
                     alt="shopping basket"></a></li>
-                    <?php if (Auth::isLoggedIn()) : ?>
-                       
-                        <li class="authorisation__nav-button"><a href="admin/logout.php">Log out</a></li>
-                    <?php else : ?>
-                        <li class="authorisation__nav-button"><a href="admin/login.php">Log in</a></li>
-                  
-                    <li class="authorisation__nav-button"><a href="register.php">Sign up</a></li>
-                    <?php endif; ?>
+                <li>
 
+                    <?php if (Auth::isLoggedIn()) : ?>
+                        <a href="logout-user.php">
+                    <img id="user-credentials" class="user-icon" src="images/logout.svg" 
+                    alt="user logout"></a>
+                       
+                    <?php else : ?>
+                        <a href="login-user.php">
+                    <img id="user-credentials" class="user-icon" src="images/user-210.svg" 
+                    alt="user login or register"></a>
+                    <?php endif; ?> 
+                    </li>
                 </ul>
             </nav>
         </div>
+       
     </header>
     <main>
     

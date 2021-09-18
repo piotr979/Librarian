@@ -8,17 +8,21 @@
  {
      /**
       * This function check if user is logged in
-      * @return boolean true if logged, false otherwise
+      * @param $as_admin true if user is logged as admin, false otherwise
+      * @return boolean true if logged (as admin or user), false otherwise
       */
-     public static function isLoggedIn() 
+     public static function isLoggedIn($as_admin = false) 
      {
-         
-        return isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'];
+        if ($as_admin == true) {
+            return isset($_SESSION['is_logged_in_as_admin']) && $_SESSION['is_logged_in_as_admin'];
+        } else {
+            return isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'];
+        }
     }
 
-    public static function requireLogin() 
+    public static function requireLogin($as_admin = false) 
     {
-        if (!Auth::isLoggedIn()) {
+        if (!Auth::isLoggedIn($as_admin)) {
             die("Unauthorised. Please log in first.");
         }
     }

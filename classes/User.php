@@ -11,22 +11,26 @@ class User
      * Unique identifier of each user
      * @var integer
      */
-
     public $id;
 
     /**
      * User name
      * @var string
      */
-
     public $user;
 
     /**
      * Password for user
      * @var string
      */
-
     public $password;
+
+
+    /** 
+     * Check if user is admin
+     * @var boolean
+     */
+    public $is_admin;
 
     /**
      * It lets user to log in
@@ -50,7 +54,7 @@ class User
 
         if ($stmt->execute()) {
             if ($user = $stmt->fetch()) {
-                return password_verify($password, $user->password);
+                return $pass_and_admin_verify = [password_verify($password, $user->password), $user->is_admin];
             }
         }
     }

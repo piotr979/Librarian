@@ -5,13 +5,22 @@ require 'includes/init.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn = require "includes/db.php";
-    if (User::authenticate($conn, $_POST['username'], $_POST['password'])) {
-        $_SESSION['is_logged_in'] = true;
-       
-        Url::redirect('/librarian/admin/index.php');
-    } else {
-        $errors[] = "Authetication error.";
-    }
+    
+    $pass_and_admin_verify = User::authenticate($conn, $_POST['username'], $_POST['password']);
+ 
+        // we check second element in array to find out if its admin
+    
+        if (isset($pass_and_admin_verify)) {
+            if ($pass_and_admin_verify[1] == true) {
+                $_SESSION['is_logged_in_as_admin'] = true;
+                Url::redirect('/librarian/admin/index.php');
+            } elseif ($pass_and_admin_verify[0] == true) {
+                $_SESSION['is_logged_in'] = true;
+                Url::redirect('/librarian/index.php');
+            }
+        } else {
+            $errors[] = "Authetication error.";
+        }
 }
 ?>
 <!DOCTYPE html>
@@ -35,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
     <form class="user-login" method="POST">
     <h3>Librarian</h3>
-    <p>Sign up with your email address.</p>
+    <p>Login with your email address.</p>
     <?php if (isset($errors)): ?>
         <?php foreach ($errors as $error) : ?>
             <p><?= $error ?></p>
@@ -46,11 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="password" class="login__label">Password</label>
         <input name="password" type="password" class="login__input">
 
-        <label for="password-2" class="login__label">Repeat password</label>
-        <input name="password-2" type="password" class="login__input">
-
         <div class="login__submit__wrapper">
         <button class="login__submit">Submit</button>
+        </div>
+        <div class="reg-teaser">
+            <p>No account?&nbsp;<a href="register-user.php">Register here</a>
         </div>
 </section>
 
