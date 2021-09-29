@@ -1,7 +1,7 @@
 <?php
 
 require '../includes/init.php';
-Auth::requireLogin();
+Auth::requireLogin(true);
 $conn = require '../includes/db.php';
 
 if (isset($_GET['id'])) {

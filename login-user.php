@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input name="password" type="password" class="login__input">
 
         <div class="login__submit__wrapper">
-        <button class="login__submit">Submit</button>
+        <button class="login__submit">Login</button>
         </div>
         <div class="reg-teaser">
             <p>No account?&nbsp;<a href="register-user.php">Register here</a>

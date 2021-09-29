@@ -4,7 +4,7 @@ $upload_status = '';
 $current_image_file = '';
 require '../includes/init.php';
 $conn = require '../includes/db.php';
-Auth::requireLogin();
+Auth::requireLogin(true);
 $book = new Book();
 
 if ($_SERVER['REQUEST_METHOD']  == "POST") {

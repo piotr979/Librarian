@@ -33,9 +33,9 @@
                     alt="shopping basket"></a></li>
                 <li>
 
-                    <?php if (Auth::isLoggedIn()) : ?>
+                    <?php if (Auth::isLoggedIn() || Auth::isLoggedIn(true)): ?>
                         <a href="logout-user.php">
-                    <img id="user-credentials" class="user-icon" src="images/logout.svg" 
+                    <img id="user-credentials" class="logout-icon" src="images/logout.svg" 
                     alt="user logout"></a>
                        
                     <?php else : ?>

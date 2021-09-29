@@ -400,10 +400,22 @@ span.required {
     padding-left: 1rem;
     padding-top: .3rem;
 }
-.shopping-basket, .user-icon {
+.shopping-basket, .user-icon, .logout-icon {
     width: 1.5rem;
-    top: 5px;
     height: auto;
+}
+.switch-icon {
+    width: 1.6rem;
+    height: auto;
+}
+.logout-icon, .switch-icon {
+    position: relative;
+}
+.logout-icon {
+    top: 1px;
+}
+.switch-icon {
+    top: 2px;
 }
 .reg-teaser {
     margin-top: 1rem;

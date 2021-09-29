@@ -2,7 +2,7 @@
 
 require '../includes/init.php';
 
-Auth::requireLogin();
+Auth::requireLogin(true);
 
 $conn = require '../includes/db.php';
 require 'includes/header.php';

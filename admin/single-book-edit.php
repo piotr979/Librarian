@@ -3,7 +3,7 @@
 require '../includes/init.php';
 $conn = require '../includes/db.php';
 
-Auth::requireLogin();
+Auth::requireLogin(true);
 $upload_status = '';
 $current_image_file = '';
 if (isset($_GET['id'])) {

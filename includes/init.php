@@ -4,8 +4,8 @@
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'librarian');
-define('DB_USER', 'cms_www');
-define('DB_PASS', 'UXb9ARqrf5UhLSo2');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
 
 

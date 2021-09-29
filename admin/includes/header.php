@@ -27,8 +27,11 @@
             </div>
             <nav class="authorisation">
                 <ul class="authorisation__nav__admin">
-                    <li><a href="../index.php">Front page</a></li>
-                    <li><a href="logout.php">Log out</a></li>
+                    <li><a href="../index.php">
+                    <img id="user-credentials" class="switch-icon" src="../images/switch.svg" ></a></li>
+                    <li><a href="../logout-user.php">
+                    <img id="user-credentials" class="logout-icon" src="../images/logout.svg" >
+                    </a></li>
                     
                 </ul>
             </nav>
