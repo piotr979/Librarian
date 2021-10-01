@@ -534,6 +534,7 @@ div.basket > h5 {
         align-items: center;
         column-gap: 1rem;
         border: 1px #ddd solid;
+        margin-bottom: 1rem;
     }
     .basket__item-cover img {
         padding-left: 1rem;
@@ -545,8 +546,6 @@ div.basket > h5 {
     .basket__item-remove {
         padding-right: 1rem;    
     }
-
-    
 }
 
 .upload-status, .upload-status-success {
