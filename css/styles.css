@@ -38,6 +38,13 @@ h4 {
     font-weight: 400;
     font-size: 1.5rem;
 }
+h5 {
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+h6 {
+    font-size: 1rem;
+}
 label, input, select {
     display: block;
     
@@ -427,7 +434,45 @@ span.required {
 .reg-teaser a {
     color: var(--secondary-color);
 }
+.basket {
+    margin: 0 auto;
+}
+div.basket > h5 {
+    text-align: center;
+    padding: 1rem 0;        
+}
+.basket__item {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    padding: 1rem 0;
+    grid-template-columns: 1fr 6fr 1fr;
+    align-items: center;
+    column-gap: 1rem;
+}
+.basket__item-cover {
+    grid-column: 1/2;
+}
+.basket__item-cover img {
+    width: 3rem;
+    height: auto;
+}
 
+.basket__item-details {
+    grid-column: 2/3;
+}
+.basket__item-remove {
+    grid-column: 3/4;
+    justify-self: end;
+}
+.basket__item-trash-icon {
+    width: 1.2rem;
+    height: auto;
+}
+
+
+
+/* ------------------------------- */
 /* breakpoints based on boostra.p */
 /* 576px, 768px, 992px, and 1200 */
 
@@ -439,7 +484,7 @@ span.required {
     .book-item {
         max-width: 11rem;
     }
-    .book-item:not(:last-child) {
+    .book-item {
         margin-right: 2rem;
     }
     .authorisation {
@@ -480,8 +525,30 @@ span.required {
     .single-book__table tr:nth-child(odd) {
         background-color: #ffefe2;
     }
+    .basket__item {
+        width: 90%;
+        margin: 0 auto;
+        display: grid;
+        padding: 1rem 0;
+        grid-template-columns: 1fr 6fr 1fr;
+        align-items: center;
+        column-gap: 1rem;
+        border: 1px #ddd solid;
+    }
+    .basket__item-cover img {
+        padding-left: 1rem;
+    
+    }
+    .basket__item-trash-icon {
+        width: 1.5rem;
+    }
+    .basket__item-remove {
+        padding-right: 1rem;    
+    }
+
     
 }
+
 .upload-status, .upload-status-success {
     margin-top: .5rem;
 }
@@ -492,7 +559,9 @@ span.required {
     padding-bottom: .5rem;
 }
 @media screen and (min-width: 768px) {
-
+    .basket {
+        width: 60%;
+    }
 }
 
 @media screen and (min-width: 992px) {

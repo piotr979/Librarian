@@ -10,6 +10,7 @@ $sql = "SELECT * FROM book";
 
 $results = Book::getAllBooks($conn);
 
+
 ?>
 
 <section class="books-display">
@@ -25,8 +26,8 @@ $results = Book::getAllBooks($conn);
 
                 <!-- limits title length to 18 chars (+ ...) !-->
                 <p class="book-item__title"><?=
-                        (strlen($book['title']) > 22 ?
-                            htmlspecialchars(substr($book['title'], 0, 18) . '...')
+                        (strlen($book['title']) > 20 ?
+                            htmlspecialchars(substr($book['title'], 0, 15) . '...')
                             : htmlspecialchars($book['title'])); ?>
             </a>
 

@@ -28,6 +28,7 @@
             </div>
             <nav class="authorisation">
                 <ul class="authorisation__nav">
+            
                 <?php if (Auth::isLoggedIn(true)): ?>
                     <li><a href="admin/index.php">
                     <img id="user-credentials" class="switch-icon" src="images/switch.svg" >

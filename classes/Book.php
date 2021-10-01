@@ -12,28 +12,28 @@
       * @var integer
       */
 
-      public $id;
+      public int $id;
 
       /**
        * Author of the book
        * @var string
        */
 
-      public $author;
+      public string $author;
 
       /**
        * Title of the book
        * @var string
        */
 
-      public $title;
+      public string $title;
 
       /**
        * Released year
        * @var integer
        */
 
-      public $year;
+      public int $year;
 
       /**
        * Category of the book
