@@ -48,8 +48,9 @@ $book = new Book();
                                 <?= $result[$key] == '0' ? 'Kids' : 'Adults' ?>
                         <?php elseif ($key == 'is_available'): ?>
                                 <?= $result[$key] == '1' ? 'Yes' : "No" ?>
+                       
                         <?php elseif ($key == 'image_file') : ?>
-                                <?= $result[$key] !== NULL ? "Yes" : "No" ?>
+                                <?= $result[$key] !== '' ? "Yes" : "No" ?>
                         <?php else: ?>
                         <?= $result[$key] ?>
                         <?php endif; ?>

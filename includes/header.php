@@ -28,10 +28,16 @@
             </div>
             <nav class="authorisation">
                 <ul class="authorisation__nav">
+                <?php if (Auth::isLoggedIn(true)): ?>
+                    <li><a href="admin/index.php">
+                    <img id="user-credentials" class="switch-icon" src="images/switch.svg" >
+                     </a></li>
+                <?php else: ?>
                 <li><a href="basket.php">
                     <img class="shopping-basket" src="images/shopping-basket-svgrepo-com.svg" 
                     alt="shopping basket"></a></li>
                 <li>
+                <?php endif; ?>
 
                     <?php if (Auth::isLoggedIn() || Auth::isLoggedIn(true)): ?>
                         <a href="logout-user.php">
