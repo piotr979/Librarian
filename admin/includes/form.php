@@ -18,7 +18,8 @@
     <label for="category">Category</label>
     <select name="category">
         <?php foreach ($book->categories as $idx => $category) : ?>
-            <option value="<?= $category ?>" <?php if ($idx == $book->category) echo "selected"; ?>><?= ucfirst($category); ?></option>
+            <option value="<?= $category ?>"
+             <?php if ($idx == $book->category) echo "selected"; ?>><?= ucfirst($category); ?></option>
         <?php endforeach; ?>
     </select>
 
@@ -30,7 +31,7 @@
 
     <div class="age-checkboxes">
         <label>Age group</label>
-        <label><input type="radio" name="age" value="adults" <?php if ($book->age_from == 0) echo "checked"; ?>>Kids</label>
+        <label><input type="radio" name="age" value="children" <?php if ($book->age_from == 0) echo "checked"; ?>>Kids</label>
         <label><input type="radio" name="age" value="adults" <?php if ($book->age_from == 1) echo "checked"; ?>>Adults</label>
     </div>
 

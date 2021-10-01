@@ -166,7 +166,7 @@
            
             // Fill class with proper values before creating new book in DB
             $this->category = array_search($this->category, $this->categories); 
-            $this->age_from == 'kids' ? $this->age_from = 0 : $this->age_from = 1;
+           // $this->age_from == 'kids' ? $this->age_from = 0 : $this->age_from = 1;
             $this->is_available = 1;
 
             $sql = "INSERT INTO book (title, 
@@ -224,7 +224,7 @@
              
               // Fill class with proper values before creating new book in DB
               $this->category = array_search($this->category, $this->categories); 
-              $this->age_from == 'kids' ? $this->age_from = 0 : $this->age_from = 1;
+              //$this->age_from == 'kids' ? $this->age_from = 0 : $this->age_from = 1;
               $this->is_available = 1;
   
               $sql = "UPDATE book SET 

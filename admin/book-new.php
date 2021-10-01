@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD']  == "POST") {
         $book->category = $_POST['category'];
         $book->pages = $_POST['pages'];
         $book->publisher = $_POST['publisher'];
-        $book->age = $_POST['age'];
+        $book->age_from = $_POST['age'] == 'children' ? 0 : 1;
         $book->image_file = $_POST['file_path'];
         if ( $book->insertBook($conn)) {
             Url::redirect('/librarian/admin/');
@@ -28,12 +28,12 @@ if ($_SERVER['REQUEST_METHOD']  == "POST") {
         $book->title = $_POST['title'];
         $book->author = $_POST['author'];
         $book->year = $_POST['year'];
-        $book->category = $_POST['category'];
+        $book->category = array_search($_POST['category'], $book->categories);
         $book->pages = $_POST['pages'];
         $book->publisher = $_POST['publisher'];
-        $book->age = $_POST['age'];
+        $book->age_from = $_POST['age'] == 'children' ? 0 : 1;
         $book->image_file = 'imagefil';
-
+       
         try {
 
             if (empty($_FILES)) {
