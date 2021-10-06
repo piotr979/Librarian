@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
                     <p>Not available at the moment</p>
                 <?php endif; ?>
             <?php else : ?>
-                <p class="single-book__no-access">To borrow please login</p>
+                <p class="single-book__no-access">To borrow please <a href="login-user.php">login</a></p>
             <?php endif; ?>
     </div>
     <div class="single-book__table-wrapper">

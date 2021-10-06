@@ -18,6 +18,9 @@ if (isset($_COOKIE['basket'])) {
 <div class="basket">
     <h5>Your basket</h5>
 
+    <?php if (Basket::is_empty()): ?>
+        <p class="center-me">Your basket is empty</p>
+        <?php else: ?>
     <section>
         <?php foreach ($books as $book) : ?>
 
@@ -41,6 +44,8 @@ if (isset($_COOKIE['basket'])) {
         <?php endforeach; ?>
 
     </section>
+
+    <?php endif; ?>
 </div>
 <script>
     const trashcans = document.querySelectorAll('.trash-remove');

@@ -13,7 +13,7 @@
     <input name="author" value="<?= htmlspecialchars($book->author); ?>">
 
     <label for="year">Year published</label>
-    <input type="number" name="year" min="-1000" max="2022" value="<?= htmlspecialchars($book->year); ?>">
+    <input type="number" name="year" min="-1000" max="2022" value="<?= ($book->year)  ?? ''; ?>">
 
     <label for="category">Category</label>
     <select name="category">

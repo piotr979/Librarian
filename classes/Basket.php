@@ -76,13 +76,23 @@
              {
                 if (isset($_COOKIE['basket'])) {
                     $basket = json_decode($_COOKIE['basket']);
-
                     $index = array_search($id, $basket);
         
                   setcookie('index', $index);
-                   unset($basket[$index]);
+                  array_splice($basket, $index, 1);
+                  if (empty($basket)) {
+                      setcookie('basket', '', time() - 3600);
+                  } else {
                    setcookie('basket', json_encode($basket));
                 }
+             }
+            }
+             /** 
+              * checks if basket ie empty 
+              * @return boolean if true
+              */
+             public static function is_empty() {
+                    return (empty($_COOKIE['basket']) ? true : false );
              }
 
     

@@ -6,6 +6,9 @@ require '../includes/init.php';
 $conn = require '../includes/db.php';
 Auth::requireLogin(true);
 $book = new Book();
+$book->title = '';
+$book->author = '';
+
 
 if ($_SERVER['REQUEST_METHOD']  == "POST") {
    
