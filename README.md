@@ -12,5 +12,6 @@ Whats is working:
 
 Altough I spent hours to crate this project it was mainly for education purposes therefore you may find many errors and bad practices.
 
-
+user login: dave password: secret
+admin login: admin password: 123456
 ![alt text](https://github.com/piotr979/librarian/blob/main/front_image.jpg)
