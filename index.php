@@ -14,7 +14,7 @@ $book = new Book();
 ?>
 <section class="welcoming">
     <h2 class="welcoming__header">Welcome to Librarian.</h2>
-    <small class="welcoming__text">Simplified rent to read online system.</small>
+    <p class="welcoming__text">Simplified rent to read online system.</p>
 
 </section>
 <section class="filtering">
@@ -72,4 +72,9 @@ $book = new Book();
     <?php endforeach; ?>
 
 </section>
+<script>
+ function() {
+     updateBasketIcon();
+ }();
+</script>
 <?php require 'includes/footer.php'; ?>

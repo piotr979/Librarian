@@ -49,11 +49,9 @@ if (isset($_COOKIE['basket'])) {
 </div>
 <script>
     const trashcans = document.querySelectorAll('.trash-remove');
-    console.log(trashcans);
     trashcans.forEach( function(book) {
             book.addEventListener('click', function(ev) {
                 const bookId = ev.target.dataset.id;
-                console.log(bookId);
         book.parentNode.parentNode.parentNode.removeChild(book.parentNode.parentNode);
         let response = fetch("remove-from-basket.php", {
             method: 'POST',
@@ -63,9 +61,14 @@ if (isset($_COOKIE['basket'])) {
             body: JSON.stringify( {
                 id: bookId
             })
+        }).then((response) => {
+            if (response.status === 200) {
+            updateBasketIcon();
+            }
         })
     });
 });
+   
 
 </script>
 

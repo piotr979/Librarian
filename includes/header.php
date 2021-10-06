@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Reem+Kufi&display=swap" rel="stylesheet">
 
+    <script src="js/custom.js"></script>
 </head>
 
 <body>
@@ -32,24 +33,29 @@
                 <?php if (Auth::isLoggedIn(true)): ?>
                     <li><a href="admin/index.php">
                     <img id="user-credentials" class="switch-icon" src="images/switch.svg" >
-                     </a></li>
+                    <p class="authorisation__nav-name">Switch to admin</p>     
+                </a></li>
                 <?php else: ?>
-                <li><a href="basket.php">
+                    <a href="basket.php">
+                <li id="basket-wrapper">
                     <img class="shopping-basket" src="images/shopping-basket-svgrepo-com.svg" 
-                    alt="shopping basket"></a></li>
-                <li>
+                    alt="shopping basket"></li>
+                    <p class="authorisation__nav-name">Your basket</p>
+                    </a>
                 <?php endif; ?>
-
+                <li>
                     <?php if (Auth::isLoggedIn() || Auth::isLoggedIn(true)): ?>
                         <a href="logout-user.php">
                     <img id="user-credentials" class="logout-icon" src="images/logout.svg" 
                     alt="user logout"></a>
-                       
+                    <p class="authorisation__nav-name">Log out</p>
                     <?php else : ?>
                         <a href="login-user.php">
                     <img id="user-credentials" class="user-icon" src="images/user-210.svg" 
                     alt="user login or register"></a>
+                    <p class="authorisation__nav-name">Login here</p>
                     <?php endif; ?> 
+                  
                     </li>
                 </ul>
             </nav>

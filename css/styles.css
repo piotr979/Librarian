@@ -139,16 +139,22 @@ header {
     padding-right: 1rem;
 }
 .authorisation__nav, .authorisation__nav__admin {
+    display: flex;
+    flex-direction: row;
+}
+.authorisation__nav, .authorisation__nav__admin {
     list-style-type: none;
     font-size: 12px;
 }
-ul.authorisation__nav li, ul.authorisation__nav__admin li {
+ul.authorisation__nav li,  ul.authorisation__nav__admin li, 
+.authorisation__nav > *,  ul.authorisation__nav__admin > * {
     font-family: var(--default-font);
+    text-align: center;
     display: inline;
     font-weight: 600;
     padding: 0 .2rem;
-    
 }
+
 .authorisation__nav li:first-child a {
     color: white;
 }
@@ -168,6 +174,10 @@ ul.authorisation__nav li, ul.authorisation__nav__admin li {
     position: relative;
     top: -.3rem;
 }
+.authorisation__nav-name {
+    display: none;
+}
+
 .filtering {
     margin: 0 1rem;
     padding-top: 1rem;
@@ -197,6 +207,7 @@ ul.authorisation__nav li, ul.authorisation__nav__admin li {
     font-family: var(--default-font);
     padding-bottom: .2rem;
     font-size: 1.5rem;
+
 
 }
 .filtering-checkboxes label {
@@ -252,7 +263,7 @@ ul.authorisation__nav li, ul.authorisation__nav__admin li {
     color: var(--secondary-color);
 }
 .book-item__norent {
-    color: var(--primary-color);
+    color: var(--faded-text-color);
 }
 .book-wrapper {
     transition: .4s all;
@@ -471,9 +482,26 @@ span.required {
 .shopping-basket, .user-icon, .logout-icon {
     width: 1.5rem;
     height: auto;
+    margin: 0 auto;
+}
+#basket-wrapper {
+    position: relative;
+}
+#basket-wrapper::after {
+    position: absolute;
+    content: attr(data-after);
+    bottom: 12px;
+    right: -3px;
+    width: 15px;
+    color: red;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid #fff;
+
 }
 .switch-icon {
-    width: 1.6rem;
+    width: 1.5rem;
     height: auto;
 }
 .logout-icon, .switch-icon {
@@ -483,7 +511,7 @@ span.required {
     top: 1px;
 }
 .switch-icon {
-    top: 2px;
+    top: 0px;
 }
 .reg-teaser {
     margin-top: 1rem;
@@ -538,6 +566,12 @@ div.basket > h5 {
 /* 576px, 768px, 992px, and 1200 */
 
 @media screen and (min-width: 576px) {
+    .authorisation__nav-name {
+        color: white;
+        text-align: center;
+        display: block;
+        font-weight: normal;
+    }
     .books-display {
         flex-direction: row;
         justify-content: center;
@@ -545,7 +579,9 @@ div.basket > h5 {
     .book-item {
         max-width: 11rem;
     }
-   
+    header {
+        padding: .4rem;
+    }
     .authorisation {
         grid-column: 6/9;
         margin-right: 1rem;
@@ -608,9 +644,6 @@ div.basket > h5 {
     .in-stock {
         margin-left: 1rem;
     }
-    .filtering {
-       padding-left: 3rem;
-    }
 }
 
 .upload-status, .upload-status-success {
@@ -626,14 +659,19 @@ div.basket > h5 {
     .basket {
         width: 60%;
     }
+  
 }
 
 @media screen and (min-width: 992px) {
-    
+   .filtering {
+       padding-left: 1rem;
+   }
 }
 
 @media screen and (min-width: 1200px) {
-
+    .filtering {
+        padding-left: 3rem;
+     }
 }
 
 /* ----------------------- */

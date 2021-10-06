@@ -20,20 +20,23 @@ if (isset($_GET['id'])) {
     <div id="">
         <h4><?= $book->title; ?></h4>
         <p class="single-book__author"><?= $book->author; ?></p>
-        <?php if (Auth::isLoggedIn()) : ?>
-            <?php if (Basket::isInTheBasket($book->id)) : ?>
-                <p>Already in the basket</p>
-            <?php elseif (Basket::isLimitReached()) : ?>
-                <p>Limit 4 books reached!</p>
-            <?php elseif ($book->is_available == 1) : ?>
+    
+               <?php if (Auth::isLoggedIn(true)): ?>
+                   <p>Please login as user</p>
+               
+               <?php elseif (Basket::isInTheBasket($book->id)) : ?>
+                    <p>Already in the basket</p>
+                <?php elseif (Basket::isLimitReached()) : ?>
+                   <p>Limit 4 books reached!</p>
+                <?php elseif ($book->is_available == 1) : ?>
                 <button class="button-basket" id="add-book">Add to basket</button>
                 <div id="basket-update"></div>
                 <?php else : ?>
-                    <p>Not available at the moment</p>
-                <?php endif; ?>
-            <?php else : ?>
-                <p class="single-book__no-access">To borrow please <a href="login-user.php">login</a></p>
-            <?php endif; ?>
+                        <p>Not available at the moment</p>
+         <?php endif; ?>
+        
+           
+          
     </div>
     <div class="single-book__table-wrapper">
         <table class="single-book__table">
@@ -128,11 +131,14 @@ if (isset($_GET['id'])) {
                             addButton.parentNode.removeChild(addButton);
                             const parentNode = document.getElementById('basket-update');
                             parentNode.innerHTML = "<p>Added to basket</p>"
+                            updateBasketIcon();
                         }
                     }
                 });
             })
+           
         }
+       
     </script>
 
     <?php require 'includes/footer.php'; ?>

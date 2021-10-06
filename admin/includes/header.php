@@ -28,10 +28,16 @@
             <nav class="authorisation">
                 <ul class="authorisation__nav__admin">
                     <li><a href="../index.php">
-                    <img id="user-credentials" class="switch-icon" src="../images/switch.svg" ></a></li>
+                    <img id="user-credentials" class="switch-icon" src="../images/switch.svg" >
+                    <p class="authorisation__nav-name">Switch to front</p>
+                    </a>
+                </li>
+
                     <li><a href="../logout-user.php">
                     <img id="user-credentials" class="logout-icon" src="../images/logout.svg" >
-                    </a></li>
+                    <p class="authorisation__nav-name">Logout</p>
+                    </a>
+                </li>
                     
                 </ul>
             </nav>
