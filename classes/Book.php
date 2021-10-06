@@ -277,10 +277,37 @@
 ;        }
         return empty($this->errors);
     }
-    public static function displayByCategory() {
-        $sql = "SELECT * FROM book JOIN category WHERE book.category = category.id";
+
+    /** 
+     * Returns books from selectedd category
+     * @param object $conn Connection
+     * @param string $category
+     * 
+     * @return array books of selected category 
+     */
+    public function getBooksWithCategory($conn, $category) {
+        $category_id = $this->getIDOfCategoryFromName($category);
+        
+        $sql = "SELECT * FROM book WHERE category = :category";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':category', $category_id, PDO::PARAM_INT);
+       
+        if ($stmt->execute()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            echo "Error";
+        };
     }
 
+    /**
+     * Returns id of selected category
+     * @param string $category Name of selected category
+     * @return integer $id ID of category (position from array)
+     */
+
+    protected function getIDOfCategoryFromName(string $category) {
+        return array_search($category, $this->categories);
+    }
  }
 
 

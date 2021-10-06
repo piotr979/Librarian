@@ -268,9 +268,7 @@ ul.authorisation__nav li,  ul.authorisation__nav__admin li,
 .book-wrapper {
     transition: .4s all;
 }
-.book-wrapper:hover {
-    transform: scale(1.05) rotateZ(1deg);
-}
+
 .login-section {
     width: 320px;
     height: 100vh;
@@ -658,6 +656,9 @@ div.basket > h5 {
 @media screen and (min-width: 768px) {
     .basket {
         width: 60%;
+    }
+    .book-wrapper:hover {
+        transform: scale(1.05) rotateZ(1deg);
     }
   
 }

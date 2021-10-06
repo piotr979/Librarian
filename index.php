@@ -9,25 +9,46 @@ require 'includes/header.php';
 $sql = "SELECT * FROM book";
 
 $results = Book::getAllBooks($conn);
-$book = new Book();
 
+$book = new Book();
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+    if (isset($_GET['filter_category'])) {
+        if ($_GET['filter_category'] != 'all') {
+         $results = $book->getBooksWithCategory($conn, $_GET['filter_category']);
+        } else {
+            $results = Book::getAllBooks($conn);
+
+        }
+    }
+}
 ?>
 <section class="welcoming">
     <h2 class="welcoming__header">Welcome to Librarian.</h2>
-    <p class="welcoming__text">Simplified rent to read online system.</p>
+    <p class="welcoming__text">Online system for classic libraries.</p>
 
 </section>
 <section class="filtering">
     <div class="filtering-category">
-        <select name="filter-category">
+        <form method="GET">
+        <select onchange="this.form.submit();" name="filter_category">
     
                 <option value="all">All categories</option>
                 <?php foreach ($book->categories as $category) : ?>
-                    <option value="<?= $category; ?>"><?= ucfirst($category); ?></option>
-                <?php endforeach; ?>
+
+                 
+                        <option value="<?= $category; ?>"
+                        <?php if (isset($_GET['filter_category'])) : ?>
+                        <?php if ($category == $_GET['filter_category']) echo "selected"; ?>
+                        <?php endif; ?>
+                        ><?= ucfirst($category); ?></option>
+
+                        
+                    <?php endforeach; ?>
          
                       
         </select>
+                </form>
     </div>
 
     <div class="filtering-checkboxes">
@@ -43,7 +64,6 @@ $book = new Book();
 </section>
 <section class="books-display">
     <?php foreach ($results as $book) : ?>
-
         <article class="book-item">
             <div class="book-wrapper">
                 <a href="single-borrow.php?id=<?= $book['id']; ?>">
@@ -73,8 +93,6 @@ $book = new Book();
 
 </section>
 <script>
- function() {
-     updateBasketIcon();
- }();
+
 </script>
 <?php require 'includes/footer.php'; ?>
