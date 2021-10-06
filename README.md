@@ -1,7 +1,7 @@
 # Librarian
 # Front image
 
-Librarian is simple system to rent books - but it classic way not online. You simply choose your books, add them to basket and submit the form. Then you can collect them from the library. 
+Librarian is simple system to rent books - but in classical way, not online. You simply choose your books, add them to basket and submit the form. Then you can collect them from the library. 
 It is my first PHP projet, it supposed to be simple, but I added many features I didn't plan to implement. 
 
 Whats is working:
