@@ -13,14 +13,27 @@ $results = Book::getAllBooks($conn);
 $book = new Book();
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
-    if (isset($_GET['filter_category'])) {
-        if ($_GET['filter_category'] != 'all') {
-         $results = $book->getBooksWithCategory($conn, $_GET['filter_category']);
-        } else {
-            $results = Book::getAllBooks($conn);
+    if (isset($_GET)) {
+        if (isset($_GET['checkbox-avail'])) {
+            $results = $book->getBooksWithAvailability($conn, true);
+        } else if (isset($_GET['checkbox-borrowed'])) {
+            $results = $book->getBooksWithAvailability($conn, false);
+        } else if (isset($_GET['checkbox_avail']) && (isset($_GET['checkbox_borrowed']))) {
 
+            $results = Book::getAllBooks($conn);
+        
+        } else if (isset($_GET['filter_category'])) {
+            if ($_GET['filter_category'] != 'all') {
+             $results = $book->getBooksWithCategory($conn, $_GET['filter_category']);
+            } else {
+                $results = Book::getAllBooks($conn);
+    
+            }
         }
-    }
+        
+      }
+    
+    
 }
 ?>
 <section class="welcoming">
@@ -48,19 +61,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
          
                       
         </select>
-                </form>
+            
     </div>
 
+   
     <div class="filtering-checkboxes">
     <label>
  
-        <input class="in-stock" type="checkbox" name="checkbox-avail" value="avail-yes">
+        <input onchange="this.form.submit();" class="in-stock" type="checkbox" name="checkbox-avail" value="avail-yes"
+            <?= isset($_GET['checkbox-avail']) ? "checked" : "" ; ?> >
        <span class="checkbox-text">In stock</span></label>
 <label>
-            <input class="out-of-stock" type="checkbox" name="checkbox-borrowed" value="avail-no">
+            <input onchange="this.form.submit();" class="out-of-stock" type="checkbox" name="checkbox-borrowed" value="avail-no"
+            <?= isset($_GET['checkbox-borrowed']) ? "checked" : "" ; ?> >
             <span class="checkbox-text">Out of stock</span></label>
     </div>
-
+    </form>
 </section>
 <section class="books-display">
     <?php foreach ($results as $book) : ?>
