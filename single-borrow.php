@@ -14,29 +14,27 @@ if (isset($_GET['id'])) {
 ?>
 <div class="single-book">
     <div id="book-id" data-id="<?= $book->id; ?>">
-        <img class="single-book__cover book-cover" src="<?= $book->image_file ? 'uploads/' . $book->image_file
-                                                            : 'images/dummy_600x960.png'; ?>" alt="book cover">
+        <img class="single-book__cover book-cover" 
+        src="<?= $book->image_file ?
+            'uploads/' . $book->image_file :
+            'images/dummy_600x960.png'; ?>" alt="book cover">
     </div>
+
     <div id="">
         <h4><?= $book->title; ?></h4>
         <p class="single-book__author"><?= $book->author; ?></p>
-    
-               <?php if (Auth::isLoggedIn(true)): ?>
-                   <p>Please login as user</p>
-               
-               <?php elseif (Basket::isInTheBasket($book->id)) : ?>
-                    <p>Already in the basket</p>
-                <?php elseif (Basket::isLimitReached()) : ?>
-                   <p>Limit 4 books reached!</p>
-                <?php elseif ($book->is_available == 1) : ?>
-                <button class="button-basket" id="add-book">Add to basket</button>
-                <div id="basket-update"></div>
-                <?php else : ?>
-                        <p>Not available at the moment</p>
-         <?php endif; ?>
-        
-           
-          
+        <?php if (Auth::isLoggedIn(true)) : ?>
+            <p>Please login as user</p>
+        <?php elseif (Basket::isInTheBasket($book->id)) : ?>
+            <p>Already in the basket</p>
+        <?php elseif (Basket::isLimitReached()) : ?>
+            <p>Limit 4 books reached!</p>
+        <?php elseif ($book->is_available == 1) : ?>
+            <button class="button-basket" id="add-book">Add to basket</button>
+            <div id="basket-update"></div>
+        <?php else : ?>
+            <p>Not available at the moment</p>
+        <?php endif; ?>
     </div>
     <div class="single-book__table-wrapper">
         <table class="single-book__table">
@@ -136,9 +134,6 @@ if (isset($_GET['id'])) {
                     }
                 });
             })
-           
         }
-       
     </script>
-
     <?php require 'includes/footer.php'; ?>

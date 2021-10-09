@@ -58,4 +58,36 @@ class User
             }
         }
     }
+
+    /**
+     * Check if the password is correct, also sanitze it.
+     * @param object $conn Connection to the database
+     * @param string $username new Username
+     * @param string $password
+     * @param string $password_repeat Password to be checked against $password
+     */
+    public static function processRegisteration($conn, $username, $password, $password_repeat) 
+    {
+        $errors = [];
+        if (empty($username) || empty($password) || empty($password_repeat) ) {
+            array_push($errors, "Please fill missing fields.");
+        } else if ($password != $password_repeat) 
+        {
+            $errors[] .= "Password confirmation doesn't match password.";
+        } else if (strlen($password) < 8) {
+            $errors[] .= "Password must be at least 8 characters length";
+          
+        }
+        if (empty($errors)) {
+        $sql = "INSERT INTO users (username, password) VALUES 
+                ( :username, :password )";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+        $stmt->bindValue(":password", $password, PDO::PARAM_STR);
+        $stmt->execute();
+        } else {
+            return $errors;
+        }
+        
+    }
 }

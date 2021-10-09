@@ -5,13 +5,12 @@ require 'includes/init.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn = require "includes/db.php";
-    if (User::authenticate($conn, $_POST['username'], $_POST['password'])) {
-        $_SESSION['is_logged_in'] = true;
-       
-        Url::redirect('/librarian/admin/index.php');
-    } else {
-        $errors[] = "Authetication error.";
+    if (isset($_POST)) {
+        $username = $_POST['username'];
+        $password = $_POST['password'] ?? '';
+        $password_repeat = $_POST['password_repeat'] ?? '';
     }
+    $errors = User::processRegisteration($conn, $username, $password, $password_repeat);
 }
 ?>
 <!DOCTYPE html>
@@ -20,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <title>Librarian - simple library</title>
-
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -41,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><?= $error ?></p>
         <?php endforeach; ?>
     <?php endif; ?>    
-        <label for="username" class="login__label">Email</label>
+        <label for="username" class="login__label">Login</label>
         <input name="username" class="login__input">
         <label for="password" class="login__label">Password</label>
         <input name="password" type="password" class="login__input">

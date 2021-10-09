@@ -299,40 +299,41 @@
         };
     }
 
-    public function getBooksWithCategoryAndAvailability($conn, $category,
-                $is_available = true) 
-    {
-        $category_id = $this->getIDOfCategoryFromName($category);
-        
-        $sql = "SELECT * FROM book WHERE category = :category, is_available = :is_available";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindValue(':category', $category_id, PDO::PARAM_INT);
-        $stmt->bindValue(':is_available', $is_available, PDO::PARAM_BOOL);
-       
-        if ($stmt->execute()) {
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            echo "Error";
-        };
-    }
-    /** 
-     * Fetch available/not in stock books
-     * @param object $conn Connection
-     * @param boolean $is_available Availability flag
+    
+    /**
+     * Gets filtered data from DB
+     * @param object $conn Connection to the database
+     * @param string $category category to be filtered
+     * @param string $is_available Availabilty of the books
      * 
-     * @return array Return array of books 
+     * @return array Array of books
      */
-    public function getBooksWithAvailability($conn, $is_available)
+
+    public function getBooksFiltered($conn, $category = "%", $is_available = "%") 
     {
-        $sql = "SELECT * FROM book WHERE is_available = :is_available";
+        
+        if ($category != "%") {
+            $category_id = $this->getIDOfCategoryFromName($category);
+        } else {
+            $category_id = "%";
+        }
+        $sql = "
+        SELECT * 
+        FROM book 
+        WHERE category LIKE :category 
+        AND is_available LIKE :is_available; ";
+
         $stmt = $conn->prepare($sql);
-        $stmt->bindValue("is_available", $is_available, PDO::PARAM_BOOL);
+        $stmt->bindValue(":category", $category_id, PDO::PARAM_STR);
+       $stmt->bindValue(":is_available", $is_available, PDO::PARAM_STR);
+        
         if ($stmt->execute()) {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } else {
             echo "Error";
         }
-        
+
+
     }
     /**
      * Returns id of selected category

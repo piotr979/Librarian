@@ -14,28 +14,26 @@ $book = new Book();
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     if (isset($_GET)) {
-        if (isset($_GET['checkbox-avail'])) {
-            $results = $book->getBooksWithAvailability($conn, true);
-        } else if (isset($_GET['checkbox-borrowed'])) {
-            $results = $book->getBooksWithAvailability($conn, false);
-        } else if (isset($_GET['checkbox_avail']) && (isset($_GET['checkbox_borrowed']))) {
+        if (isset($_GET['filter_category'])) {
 
-            $results = Book::getAllBooks($conn);
-        
-        } else if (isset($_GET['filter_category'])) {
-            if ($_GET['filter_category'] != 'all') {
-             $results = $book->getBooksWithCategory($conn, $_GET['filter_category']);
-            } else {
-                $results = Book::getAllBooks($conn);
-    
-            }
+			$category = $_GET['filter_category'] == 'all' ? '%' : $_GET['filter_category'];
+
+        } else {
+            $category = "%";
         }
-        
-      }
-    
-    
+		if ( isset($_GET['checkbox-borrowed']) && (!isset($_GET['checbkox-avail'])) ) {
+			$is_available = 0;
+         } 
+         else if ( isset($_GET['checkbox-avail']) && (!isset($_GET['checkbox-borrowed'])) ) {
+            $is_available = 1;
+        } else {
+			$is_available = "%";
+        }
+	}
+    $results = $book->getBooksFiltered($conn, $category, $is_available);
 }
 ?>
+
 <section class="welcoming">
     <h2 class="welcoming__header">Welcome to Librarian.</h2>
     <p class="welcoming__text">Online system for classic libraries.</p>
