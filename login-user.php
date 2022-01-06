@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 Url::redirect('/librarian/index.php');
             }
         } else {
-            $errors[] = "Authetication error.";
+            $errors[] = "Authentication error.";
         }
 }
 ?>
